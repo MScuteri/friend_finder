@@ -7,5 +7,9 @@ app.get("/api/friends", function(req, res) {
 })
 
 app.post("/api/friends", function(req, res) {
+	let newFriend = req.body;
+	availableFriends.push(newFriend);
+	res.json(newFriend);
+
 	
 })
