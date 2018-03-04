@@ -7,9 +7,26 @@ app.get("/api/friends", function(req, res) {
 })
 
 app.post("/api/friends", function(req, res) {
-	let newFriend = req.body;
-	availableFriends.push(newFriend);
-	res.json(newFriend);
+	$('#submit').on('click', function(event) {
+		event.preventDefault();
 
+		let newFriend = {
+			name: $('#name').val(),
+			photo: $('#photo').val(),
+			scores: [
+				$('#q1').val(),
+				$('#q2').val(),
+				$('#q3').val(),
+				$('#q4').val(),
+				$('#q5').val(),
+				$('#q6').val(),
+				$('#q7').val(),
+				$('#q8').val(),
+				$('#q9').val(),
+				$('#q10').val()
+			]
+		}
+	console.log(newFriend)
+	})
 	
 })

@@ -27,7 +27,7 @@
 		
 			<h3>Question 1</h3>
 				<p>When you drop food on the ground, you adhere to the "5 second rule"</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q1">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -37,7 +37,7 @@
 					</select>
 			<h3>Question 2</h3>
 				<p>You don't look up the weather before going outside - you prefer the surprise</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q2">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -47,7 +47,7 @@
 					</select>				
 			<h3>Question 3</h3>
 				<p>When it rains, you like to pretend the drops on the window are racing and root for one to win</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q3">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -57,7 +57,7 @@
 					</select>				
 			<h3>Question 4</h3>
 				<p>You like your television volume in increments of 5</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q4">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -67,7 +67,7 @@
 					</select>				
 			<h3>Question 5</h3>
 				<p>You are somewhat embarrassed by your Youtube "Recommended for You" videos</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q5">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -77,7 +77,7 @@
 					</select>				
 			<h3>Question 6</h3>
 				<p>You haven't successfully matched a pair of socks in 3 years</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q6">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -87,7 +87,7 @@
 					</select>				
 			<h3>Question 7</h3>
 				<p>You love a good pun</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q7">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -96,8 +96,8 @@
 						<option value="5" id="5">5 - Strongly agree</option>
 					</select>				
 			<h3>Question 8</h3>
-				<p>Hot dogs should never boiled</p>
-					<select class="custom-select">
+				<p>Hot dogs should never be boiled</p>
+					<select class="custom-select" id="q8">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -107,7 +107,7 @@
 					</select>				
 			<h3>Question 9</h3>
 				<p>You rehearse conversations you're going to have with people out loud when you're along (and you get really embarrassed when you get caught)</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q9">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -117,7 +117,7 @@
 					</select>				
 			<h3>Question 10</h3>
 				<p>You strongly agree with this statement</p>
-					<select class="custom-select">
+					<select class="custom-select" id="q10">
 						<option selected>Choose a response</option>
 						<option value="1" id="1">1 - Strongly disagree</option>
 						<option value="2" id="2">2 - Mildly disagree</option>
@@ -126,7 +126,7 @@
 						<option value="5" id="5">5 - Strongly agree</option>
 					</select>	
 			<div style="margin-top: 20px">
-				<a class="btn btn-primary btn-lg" href="#" role="button">Find your friend!</a>
+				<a class="btn btn-primary btn-lg" id="submit" role="button">Find your friend!</a>
 			</div>		
 		</div>	
 		<br>
@@ -136,5 +136,28 @@
 				<a href="https://github.com/MattScuteri/friend_finder">GitHub Repo</a>
 			</div>
 		</footer>
+	<script>
+		$('#submit').on('click', function(event) {
+			event.preventDefault();
+
+			let newFriend = {
+				name: $('#name').val(),
+				photo: $('#photo').val(),
+				scores: [
+					$('#q1').val(),
+					$('#q2').val(),
+					$('#q3').val(),
+					$('#q4').val(),
+					$('#q5').val(),
+					$('#q6').val(),
+					$('#q7').val(),
+					$('#q8').val(),
+					$('#q9').val(),
+					$('#q10').val()
+				]
+			}
+			console.log(newFriend)
+		})
+	</script>
 	</body>
 </html>
