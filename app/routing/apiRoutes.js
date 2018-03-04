@@ -3,30 +3,12 @@ const server = require('././server.js');
 const friends = require('./data/friends.js')
 
 app.get("/api/friends", function(req, res) {
-	res.json(availableFriends);
+	res.json(friends);
 })
 
-app.post("/api/friends", function(req, res) {
-	$('#submit').on('click', function(event) {
-		event.preventDefault();
-
-		let newFriend = {
-			name: $('#name').val(),
-			photo: $('#photo').val(),
-			scores: [
-				$('#q1').val(),
-				$('#q2').val(),
-				$('#q3').val(),
-				$('#q4').val(),
-				$('#q5').val(),
-				$('#q6').val(),
-				$('#q7').val(),
-				$('#q8').val(),
-				$('#q9').val(),
-				$('#q10').val()
-			]
-		}
-	console.log(newFriend)
-	})
-	
+app.post("/api/friends", newFriend, function(req, res) {
+	for (let i = 0; i < newFriend.length, i++) {
+		let totalDifference = Math.abs(newFriend.scores[i] - friends.scores)
+		
+	}
 })

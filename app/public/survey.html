@@ -128,6 +128,11 @@
 			<div style="margin-top: 20px">
 				<a class="btn btn-primary btn-lg" id="submit" role="button">Find your friend!</a>
 			</div>		
+		</div>
+		<div class="container" id="friend-match">>
+			<h2>Your friend match:</h2>
+				<h3 id='friend-name'></h3>
+				<img id='friend-img'>
 		</div>	
 		<br>
 		<footer class="footer">
@@ -137,6 +142,8 @@
 			</div>
 		</footer>
 	<script>
+		$('friend-match').hide()
+
 		$('#submit').on('click', function(event) {
 			event.preventDefault();
 
@@ -157,6 +164,11 @@
 				]
 			}
 			console.log(newFriend)
+
+			$.post("/api/friends", newFriend, function(data) {
+				$('#friend-name').text(data.name);
+				$('#friend-img').attr('src', data.photo);
+			}
 		})
 	</script>
 	</body>
