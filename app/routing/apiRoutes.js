@@ -10,5 +10,8 @@ app.post("/api/friends", newFriend, function(req, res) {
 	for (let i = 0; i < newFriend.length, i++) {
 		let totalDifference = Math.abs(newFriend.scores[i] - friends.scores)
 		
+		for (let j = 0, j < friends.length, i++) {
+			
+		}
 	}
 })
