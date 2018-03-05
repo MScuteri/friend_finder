@@ -1,8 +1,10 @@
+const friends = require('./data/friends.js');
+
 const server = function() {
 	const express = require('express');
 	const bodyParser = require('body-parser');
 	const path = require('path');
-	const friends = require('app/data/friends.js')
+	const friends = require('./app/data/friends.js')
 
 	const app = express();
 	const port = 3000;
