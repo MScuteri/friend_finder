@@ -1,4 +1,5 @@
-const friends = require('./data/friends.js');
+const friends = require('./app/data/friends.js');
+const apiRoutes = require('./app/routing/apiRoutes.js')
 
 const server = function() {
 	const express = require('express');
@@ -9,9 +10,11 @@ const server = function() {
 	const app = express();
 	const port = 3000;
 
-	app.use(bodyParser.urlencoder({ extended: false }));
+	app.use(bodyParser.urlencoded({ extended: false }));
 	app.use(bodyParser.json());
 };
+
+server();
 
 module.exports = server;
 

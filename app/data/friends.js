@@ -1,4 +1,5 @@
 const friends = 
+  [
   {
     "name":"Ahmed",
     "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
@@ -14,7 +15,7 @@ const friends =
         4,
         1
       ]
-  }
+  },
 
   {
     "name":"Brad",
@@ -31,7 +32,7 @@ const friends =
       1,
       5
     ]
-  }
+  },
 
   {
     "name":"Spongebob",
@@ -48,7 +49,7 @@ const friends =
       1,
       4
     ]
-  }
+  },
 
   {
     "name":"Face",
@@ -65,7 +66,7 @@ const friends =
       2,
       1
     ]
-  }
+  },
 
   {
     "name":"Kermit",
@@ -82,7 +83,7 @@ const friends =
       2,
       3
     ]
-  }
+  },
 
   {
     "name":"Dwayne",
@@ -100,5 +101,5 @@ const friends =
       5
     ]
   }
-
+  ];
 module.exports = friends;
