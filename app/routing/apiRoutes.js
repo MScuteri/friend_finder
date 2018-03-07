@@ -1,7 +1,3 @@
-//import server.js file
-const server = require('../../server.js');
-const friends = require('../data/friends.js')
-
 const apiRoutes = function() {
 	app.get("/api/friends", function(req, res) {
 		res.json(friends);
