@@ -1,22 +1,20 @@
 const friends = require('./app/data/friends.js');
 const apiRoutes = require('./app/routing/apiRoutes.js')
+require('./app/routing/htmlRoutes.js')(app)
 
-const server = function() {
-	const express = require('express');
-	const bodyParser = require('body-parser');
-	const path = require('path');
-	const friends = require('./app/data/friends.js')
+const express = require('express');
+const bodyParser = require('body-parser');
 
-	const app = express();
-	const port = 3000;
+const app = express();
+const port = 3000;
 
-	app.use(bodyParser.urlencoded({ extended: false }));
-	app.use(bodyParser.json());
-};
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-server();
+app.listen(port, function() {
+	console.log('App listening on PORT ' + port);
+});
 
-module.exports = server;
 
 //export to routes files
 //import friends object

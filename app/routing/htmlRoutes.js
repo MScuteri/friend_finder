@@ -1,9 +1,9 @@
-//import server file
-const server = require('../../server.js');
+const path = require('path');
 
-const htmlRoutes = function() {
+module.exports = function(app) {
 	app.get("/", function(req, res) {
-		res.sendFile(path.join(__dirname, "home.html"));
+		// res.sendFile(path.join(__dirname, "home.html"));
+		console.log("Home page")
 	});
 
 	app.get("/survey", function(req, res) {
