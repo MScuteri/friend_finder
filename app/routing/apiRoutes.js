@@ -1,12 +1,12 @@
-const path = require('path');
 const friends = require('../data/friends.js')
+const path = require('path');
 
-module.exports = function() {
+module.exports = function(app) {
 	app.get("/api/friends", function(req, res) {
 		res.json(friends);
 	})
 
-	app.post("/api/friends", newFriend, function(req, res) {
+	app.post("/api/friends", function(req, res) {
 		let bestMatch = {};
 
 		const newFriend = req.body.scores;
