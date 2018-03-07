@@ -9,7 +9,8 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-require('./app/routing/htmlRoutes.js')(app)
+require('./app/routing/htmlRoutes.js')(app);
+require('./app/routing/apiRoutes.js')(app);
 
 app.listen(port, function() {
 	console.log('Appppp listening on PORT ' + port);
