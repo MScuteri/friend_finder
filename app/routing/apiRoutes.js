@@ -1,4 +1,5 @@
 const path = require('path');
+const friends = require('../data/friends.js')
 
 module.exports = function() {
 	app.get("/api/friends", function(req, res) {
@@ -6,15 +7,25 @@ module.exports = function() {
 	})
 
 	app.post("/api/friends", newFriend, function(req, res) {
-		for (let i = 0; i < newFriend.length; i++) {
-			let totalDifference = Math.abs(newFriend.scores[i] - friends.scores)
-		
-			console.log(totalDifference);
+		let bestMatch = {};
 
-			// for (let j = 0; j < friends.length; i++) {
+		const newFriend = req.body.scores;
 
-			// }
+		for (let i = 0; i < friends.length; i++) {
+			let totalDifference;
+			
+			for(let j = 0; j < friends[i].scores.length; j++) {
+				totalDifference = Math.abs(newFriend.scores - friends[j].scores);
+
+				if (totalDifference < friends[i].scores.length) {
+					bestMatch = friends[i].length;
+
+				}
+			}
 		}
+		friends.push(newFriend);
+
+		res.json(newFriend);
 	})
 };
 
