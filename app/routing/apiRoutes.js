@@ -10,7 +10,7 @@ module.exports = function(app) {
 		let bestMatch = {};
 
 		const newFriend = req.body.scores;
-
+		
 		for (let i = 0; i < friends.length; i++) {
 			let totalDifference;
 			
