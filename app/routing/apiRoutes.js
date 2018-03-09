@@ -9,8 +9,8 @@ module.exports = function(app) {
 	app.post("/api/friends", function(req, res) {
 		let bestMatch = {};
 
-		const newFriend = req.body.scores;
-		
+		const newFriend = req.body;
+
 		for (let i = 0; i < friends.length; i++) {
 			let totalDifference;
 			

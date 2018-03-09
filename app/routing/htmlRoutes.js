@@ -1,4 +1,5 @@
 const path = require('path');
+const friends = require('../data/friends.js')
 
 module.exports = function(app) {
 	app.get("/", function(req, res) {
@@ -6,7 +7,10 @@ module.exports = function(app) {
 	});
 
 	app.get("/survey", function(req, res) {
-		console.log("Survey")
 		 res.sendFile(path.join(__dirname, "../public/survey.html"));
 	});
+
+	app.get("/friends"), function(req, res) {
+		res.json(friends);
+	}
 };
