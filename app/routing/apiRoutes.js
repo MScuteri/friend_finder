@@ -1,32 +1,43 @@
-const friends = require('../data/friends.js')
 const path = require('path');
+const bodyParser = require('body-parser');
+const friends = require('../data/friends.js')
 
 module.exports = function(app) {
 	app.get("/api/friends", function(req, res) {
 		res.json(friends);
 	})
 
-	app.post("/api/friends", function(req, res) {
+	app.post("/api/newfriend", function(req, res) {
 		let bestMatch = {};
 
 		const newFriend = req.body;
 
-		for (let i = 0; i < friends.length; i++) {
-			let totalDifference;
+		newFriendObj = {
+			name: newFriend.name,
+			photo: newFriend.photo,
+			scores: newFriend['scores[]']
+		};
+
+		friends.forEach(function(friend) {
+
+			let totalDifference = [];
 			
-			for(let j = 0; j < friends[i].scores.length; j++) {
-				totalDifference = Math.abs(newFriend.scores - friends[j].scores);
+			friends.scores.forEach(function(score) {
+				let i = 0;
+				let matchScores = Math.abs(parseInt(score) - newFriendObj.scores[i]);
+				totalDifference.push(matchScores);
+				i++
+			})
 
-				if (totalDifference < friends[i].scores.length) {
-					bestMatch = friends[i].length;
-
-				}
-			}
-		}
-		friends.push(newFriend);
-
-		res.json(newFriend);
-	})
+			let addScores = totalDifference.reduce((a, b) => a + b, 0);
+			bestMatch.push(addScores);
+			totalDifference = []
+		})
+		
+		let matchedFriend = bestMatch.indexOf(Math.min.apply(Math, bestMatch));
+		res.json(friends[matchedFriend]);
+		friends.push(newFriendObj);
+	});
 };
 
     // Note the code here. Our "server" will respond to a user"s survey result

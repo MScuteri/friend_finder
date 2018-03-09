@@ -165,7 +165,8 @@
 			}
 			console.log(newFriend)
 
-			$.post("/api/friends", newFriend, function(data) {
+			$.post("/api/newfriend", newFriend).then(function(data) {
+				console.log(data)
 				$('#friend-name').text(data.name);
 				$('#friend-img').attr('src', data.photo);
 			})
