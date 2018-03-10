@@ -5,9 +5,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
 
 require('./app/routing/htmlRoutes.js')(app);
 require('./app/routing/apiRoutes.js')(app);

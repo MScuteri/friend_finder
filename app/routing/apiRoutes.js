@@ -14,7 +14,7 @@ module.exports = function(app) {
 
 		for (let i = 0; i < friends.length; i++) {
 			let totalDifference = 0;
-			for (let j = 0; j < friends[i].scores.length; i++) {
+			for (let j = 0; j < friends[i].scores.length; j++) {
 				totalDifference = Math.abs(friends[i].scores - newFriend.scores);
 			}
 			bestMatch.push({"index": i, "difference": totalDifference});
