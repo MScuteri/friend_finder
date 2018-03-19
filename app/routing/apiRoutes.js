@@ -7,28 +7,7 @@ module.exports = function(app) {
 	})
 
 	app.post("/api/friends", function(req, res) {
-		const newFriend = req.body;
-
-		let bestMatch = [];
-
-		console.log(friends.scores);
-
-		for (let i = 0; i < friends.length; i++) {
-			let totalDifference = 0;
-			for (let j = 0; j < friends[i].scores.length; j++) {
-				totalDifference = Math.abs(friends[i].scores - newFriend.scores);
-
-				bestMatch.push({"index": j, "difference": totalDifference});
-
-				bestMatch.sort(function(a, b) {
-					return a.totalDifference - b.totalDifference;
-				});
-
-				let friendMatch = bestMatch[0].index;			
-			}
-		}
-
-		friends.push(newFriend);
+		friends.push(req.body);
 	});
 };
 

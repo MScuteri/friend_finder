@@ -130,11 +130,6 @@
 				<a class="btn btn-primary btn-lg" id="submit" role="button">Find your friend!</a>
 			</div>		
 		</div>
-		<div class="container" id="friend-match">
-			<h2>Your friend match:</h2>
-				<h3 id='friend-name'></h3>
-				<img id='friend-img'>
-		</div>	
 		<br>
 		<footer class="footer">
 			<div class="container">
@@ -142,8 +137,30 @@
 				<a href="https://github.com/MattScuteri/friend_finder">GitHub Repo</a>
 			</div>
 		</footer>
+		<div class="container" id="friend-match">
+			<h2>Your friend match:</h2>
+				<h3 id='friend-name'></h3>
+				<img id='friend-img'>
+		</div>
+		<div class="modal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Your friend match:</h5>
+						<button type="button" class="class" data-dismiss="modal" aria-label="Close">
+						</button>
+					</div>
+					<div class="modal-body">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary">Take the test again!</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>	
 	<script>
-		$('#friend-match').hide();
+		$('#modal').hide();
 
 		$('#submit').on('click', function(event) {
 			event.preventDefault();
@@ -151,28 +168,31 @@
 			let newFriend = {
 				name: $('#name').val(),
 				photo: $('#photo').val(),
-				scores: [
-					$('#q1').val(),
-					$('#q2').val(),
-					$('#q3').val(),
-					$('#q4').val(),
-					$('#q5').val(),
-					$('#q6').val(),
-					$('#q7').val(),
-					$('#q8').val(),
-					$('#q9').val(),
-					$('#q10').val()
-				]
+				total: ($('#q1').val() + $('#q2').val() + $('#q3').val() + $('#q4').val() + $('#q5').val() + $('#q6').val() + $('#q7').val() + $('#q8').val() +	$('#q9').val() + $('#q10').val())
+			};
+
+			$.get("/api/friends", function(data) {
+				let bestMatch = match(data)
+				if(bestMatch.name !== undefined) {
+					$('.modal-body').text('<p> Your new best friend is ' + bestMatch.name + '</p><img src="' + bestMatch.photo + '" height="45">');
+				}
+			}).then(function() {
+				$('#modal').show();
+				$.post('/api/friends', newFriend);
+			});
+
+			function match(data) {
+				for (let i = 0; i < friends.length; i++) {
+					let friendDifferenceArray = [];
+
+					Math.abs(newFriend.total - friend[i].total)
+
+					function friendDifference() {
+						let minFriend = Math.min(friendDifferenceArray);
+						return minFriend;
+					}
+				}
 			}
-			console.log(newFriend)
-
-			$.post("/api/friends", newFriend).then(function(data) {
-				console.log(data)
-				$('#friend-name').text(data.name);
-				$('#friend-img').attr('src', data.photo);
-			})
-
-			$('#friend-match').show();
 		})
 	</script>
 	</body>
