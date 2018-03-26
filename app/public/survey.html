@@ -138,7 +138,7 @@
 			</div>
 		</footer>
 
-		<div class="modal" tabindex="-1" role="dialog">
+		<div id="results" class="modal" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -147,9 +147,11 @@
 						</button>
 					</div>
 					<div class="modal-body">
+						<h2 id="match-name"></h2>
+						<img id="match-img" src="" alt="">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">Take the test again!</button>
+						<button type="button" class="btn btn-primary" id="refresh">Take the test again!</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					</div>
 				</div>
@@ -162,35 +164,30 @@
 			let newFriend = {
 				name: $('#name').val(),
 				photo: $('#photo').val(),
-				total: parseInt($('#q1').val()) + parseInt($('#q2').val()) + parseInt($('#q3').val()) + parseInt($('#q4').val()) + parseInt($('#q5').val()) + parseInt($('#q6').val()) + parseInt($('#q7').val()) + parseInt($('#q8').val()) +	parseInt($('#q9').val()) + parseInt($('#q10').val())
+				total: [$('#q1').val(),
+						$('#q2').val(),
+						$('#q3').val(),
+						$('#q4').val(),
+						$('#q5').val(),
+						$('#q6').val(),
+						$('#q7').val(),
+						$('#q8').val(),
+						$('#q9').val(),
+						$('#q10').val()
+					]
 			};
 
 			console.log(newFriend)
-
-			$.get("/api/friends", function(data) {
-				console.log(data);
-
-				function bestMatch(data) {
-					for (let i = 0; i < data.friends.length; i++) {
-						let friendDifferenceArray = [];
-
-						Math.abs(newFriend.total - data[i].friends.total)
-
-						function friendDifference() {
-							let minFriend = Math.min(friendDifferenceArray);
-							return minFriend;
-						}
-					}
-				}
-
-				if(bestMatch.name !== undefined) {
-					$('.modal-body').text('<p>Your new best friend is ' + bestMatch.name + '</p><img src="' + bestMatch.photo + '" height="45">');
-				}
-
-			}).then(function() {
-				$('#modal').show();
-				$.post('/api/friends', newFriend);
+		
+			$.post('/api/friends', newFriend, function(data) {
+				$("match-name").text(data.name)
+				$("#match-img").attr("src", data.photo);
+				$("#results").modal("toggle");
 			});
+		});
+
+		$('#refresh').on('click', function(event) {
+			location.reload();
 		})
 	</script>
 	</body>
