@@ -158,9 +158,46 @@
 			</div>
 		</div>	
 	<script>
+		let config = {
+			".chosen-select": {},
+			".chosen-select-deselect": {
+				allow_single_deselect: true
+			},
+			".chosen-select-no-single": {
+				disable_search_threshold: 10
+			},
+			".chosen-select-no-results": {
+				no_results_text: "Oops, nothing found!"
+			},
+			".chosen-select-width": {
+				width: "95%"
+			}
+		};
+
+		for (let selector in config) {
+			$(selector).chosen(config[selector]);
+		}
+
 		$('#submit').on('click', function(event) {
 			event.preventDefault();
 
+			function validateForm() {
+				let isValid = true;
+				$(".form-control").each(function() {
+					if ($(this).val() === '') {
+						isValid = false;
+					}
+				});
+
+				$('.chosen-select').each(function() {
+					if ($(this).val() === '') {
+						isValid = false;
+					}
+				})
+				return isValid;
+			}
+
+		if (validateForm()) {
 			let newFriend = {
 				name: $('#name').val(),
 				photo: $('#photo').val(),
@@ -184,11 +221,14 @@
 				$("#match-img").attr("src", data.photo);
 				$("#results").modal("toggle");
 			});
-		});
+		}
 
 		$('#refresh').on('click', function(event) {
-			location.reload();
-		})
+		location.reload();
+		})			
+
+	});
+			
 	</script>
 	</body>
 </html>
