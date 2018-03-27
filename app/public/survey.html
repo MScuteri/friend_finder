@@ -7,6 +7,8 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 	</head>
 
 	<body>
@@ -148,7 +150,7 @@
 					</div>
 					<div class="modal-body">
 						<h2 id="match-name"></h2>
-						<img id="match-img" src="" alt="">
+						<img id="match-img" alt="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" id="refresh">Take the test again!</button>
@@ -157,7 +159,7 @@
 				</div>
 			</div>
 		</div>	
-	<script>
+	<script type="text/javascript">
 		let config = {
 			".chosen-select": {},
 			".chosen-select-deselect": {
@@ -201,7 +203,7 @@
 			let newFriend = {
 				name: $('#name').val(),
 				photo: $('#photo').val(),
-				total: [$('#q1').val(),
+				scores: [$('#q1').val(),
 						$('#q2').val(),
 						$('#q3').val(),
 						$('#q4').val(),
@@ -217,14 +219,16 @@
 			console.log(newFriend)
 		
 			$.post('/api/friends', newFriend, function(data) {
-				$("match-name").text(data.name)
+				$("#match-name").text(data.name)
 				$("#match-img").attr("src", data.photo);
 				$("#results").modal("toggle");
 			});
+		} else {
+			alert("Please fill out all fields before submitting!");
 		}
 
 		$('#refresh').on('click', function(event) {
-		location.reload();
+			location.reload();
 		})			
 
 	});

@@ -13,15 +13,17 @@ module.exports = function(app) {
       difference: Infinity
     };
 
-    let friendData = req.body;
-    let userScores = friendData.total
+    let userData = req.body;
+    let userScores = userData.scores;
     let totalDifference;
 
     for (let i = 0; i < friends.length; i++) {
       let currentFriend = friends[i];
       totalDifference = 0;
 
-      for (let j = 0; j < currentFriend.total.length; j++) {
+      console.log(currentFriend.name);
+
+      for (let j = 0; j < currentFriend.scores.length; j++) {
         let currentFriendScore = currentFriend.scores[j];
         let currentUserScore = userScores[j];
 
