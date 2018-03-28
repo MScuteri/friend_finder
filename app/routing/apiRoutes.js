@@ -10,7 +10,7 @@ module.exports = function(app) {
 		let bestMatch = {
       name: '',
       photo: '',
-      difference: Infinity
+      friendDifference: Infinity
     };
 
     let userData = req.body;
@@ -27,9 +27,9 @@ module.exports = function(app) {
         let currentFriendScore = currentFriend.scores[j];
         let currentUserScore = userScores[j];
 
-        totalDifference += Math.abs(parseInt(currentUserScore));
+        totalDifference += Math.abs(parseInt(currentUserScore) - parseInt(currentFriendScore));
 
-        if (totalDifference <= bestMath.friendDifference) {
+        if (totalDifference <= bestMatch.friendDifference) {
           bestMatch.name = currentFriend.name;
           bestMatch.photo = currentFriend.photo;
           bestMatch.friendDifference = totalDifference;
@@ -37,7 +37,7 @@ module.exports = function(app) {
 
       }
 
-      friends.push(friendData);
+      friends.push(userData);
 
       res.json(bestMatch);
     }

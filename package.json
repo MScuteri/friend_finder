@@ -19,6 +19,7 @@
   "homepage": "https://github.com/MattScuteri/friend_finder#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "npm": "^5.8.0"
   }
 }
