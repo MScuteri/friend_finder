@@ -14,15 +14,22 @@ module.exports = function(app) {
     };
 
     let userData = req.body;
-    let userScores = userData.scores;
+    let userScores = userData['scores[]'];
     let totalDifference;
+
+    console.log(userData);
 
     for (let i = 0; i < friends.length; i++) {
       let currentFriend = friends[i];
       totalDifference = 0;
 
-      console.log(currentFriend.name);
-      console.log(currentFriend.scores)
+
+      console.log(currentFriend);
+      console.log(currentFriend['scores'])
+
+      if (currentFriend['scores[]']) {
+        currentFriend.scores = currentFriend['scores[]'];
+      }
 
       for (let j = 0; j < currentFriend.scores.length; j++) {
         let currentFriendScore = currentFriend.scores[j];
@@ -41,8 +48,7 @@ module.exports = function(app) {
       }
 
       friends.push(userData);
-
-      res.json(bestMatch);
+     res.json(bestMatch);
     }
 	});
 };
