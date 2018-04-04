@@ -24,8 +24,8 @@ module.exports = function(app) {
       totalDifference = 0;
 
 
-      console.log(currentFriend);
-      console.log(currentFriend['scores'])
+      console.log("Console log 1", currentFriend);
+      console.log("Console log 2", currentFriend['scores'])
 
       if (currentFriend['scores[]']) {
         currentFriend.scores = currentFriend['scores[]'];
@@ -35,20 +35,20 @@ module.exports = function(app) {
         let currentFriendScore = currentFriend.scores[j];
         let currentUserScore = userScores[j];
 
-        console.log(currentFriendScore);
-        console.log(currentUserScore);
+        console.log("Console log 3", currentFriendScore);
+        console.log("Console log 4", currentUserScore);
 
         totalDifference += Math.abs(parseInt(currentUserScore) - parseInt(currentFriendScore));
-
-        if (totalDifference <= bestMatch.friendDifference) {
-          bestMatch.name = currentFriend.name;
-          bestMatch.photo = currentFriend.photo;
-          bestMatch.friendDifference = totalDifference;
-        }
       }
+
+      if (totalDifference <= bestMatch.friendDifference) {
+        bestMatch.name = currentFriend.name;
+        bestMatch.photo = currentFriend.photo;
+        bestMatch.friendDifference = totalDifference;
+      }
+    }
 
       friends.push(userData);
      res.json(bestMatch);
-    }
 	});
 };
